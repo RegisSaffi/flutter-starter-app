@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfileScreen extends StatelessWidget {
+var indexProvider = StateProvider<int>((ref) => 0);
+
+class ProfileScreen extends ConsumerWidget {
   final String username;
   const ProfileScreen({super.key, required this.username});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    var index = ref.watch(indexProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
@@ -23,6 +28,10 @@ class ProfileScreen extends StatelessWidget {
         ],
       )),
       bottomNavigationBar: NavigationBar(
+        selectedIndex: index,
+        onDestinationSelected: (i) {
+          ref.read(indexProvider.notifier).state = i;
+        },
         destinations: [
           NavigationDestination(icon: Icon(Icons.home), label: "Home"),
           NavigationDestination(icon: Icon(Icons.people), label: "Students"),
