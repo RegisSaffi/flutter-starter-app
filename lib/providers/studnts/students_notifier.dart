@@ -15,8 +15,7 @@ class StudentsNotifier extends Notifier<List<Student>> {
   }
 
   void removeStudent(Student student) {
-    // state = state.where((s) => s.id != student.id).toList();
-    state = List.from(state)..remove(student);
+    state = state.where((s) => s.id != student.id).toList();
   }
 
   void updateStudent(Student student) {
