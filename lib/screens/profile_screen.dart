@@ -4,7 +4,7 @@ import 'package:starter/screens/pages/home_page.dart';
 import 'package:starter/screens/pages/settings_page.dart';
 import 'package:starter/screens/pages/students_page.dart';
 
-var indexProvider = StateProvider<int>((ref) => 1);
+var indexProvider = StateProvider<int>((ref) => 0);
 
 class ProfileScreen extends ConsumerStatefulWidget {
   final String username;
