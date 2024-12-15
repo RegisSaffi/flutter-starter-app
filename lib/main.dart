@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,
       darkTheme: ThemeData.dark(),
-      home: const MyHomePage(),
+      home: const HomeScreen(),
     );
   }
 }

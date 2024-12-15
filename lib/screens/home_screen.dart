@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:starter/screens/profile_screen.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   var formKey = GlobalKey<FormState>();
 
   var userNameController = TextEditingController();
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Starter app"),
+        title: const Text("Starter app"),
       ),
       body: SizedBox.expand(
         child: Padding(
@@ -42,14 +42,14 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(
+                const Icon(
                   Icons.person,
                   size: 100,
                 ),
-                Text(
+                const Text(
                   'Welcome to Starter app',
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15),
@@ -64,7 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         return null;
                       }
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
+                        isDense: true,
                         hintText: "Enter your username",
                         labelText: "Username",
                         prefixIcon: Icon(Icons.person),
@@ -83,19 +84,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       return null;
                     }
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
+                      isDense: true,
                       hintText: "Enter your password",
                       labelText: "Password",
                       prefixIcon: Icon(Icons.lock),
                       border: OutlineInputBorder()),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: FilledButton(
-                      onPressed: () {
-                        login();
-                      },
-                      child: Text("Login")),
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    height: 50,
+                    width: double.infinity,
+                    child: FilledButton(
+                        onPressed: () {
+                          login();
+                        },
+                        child: const Text("Login")),
+                  ),
                 ),
               ],
             ),
