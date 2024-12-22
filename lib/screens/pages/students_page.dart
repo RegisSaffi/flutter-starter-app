@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter/models/student.dart';
 import 'package:starter/providers/studnts/prviders.dart';
+import 'package:starter/screens/new_student.dart';
 
 class StudentsPage extends ConsumerStatefulWidget {
   const StudentsPage({super.key});
@@ -108,15 +109,11 @@ class _StudentsPageState extends ConsumerState<StudentsPage> {
                     ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ///How you add new student to the list by checking the id
+          var page = MaterialPageRoute(
+            builder: (context) => NewStudentScreen(),
+          );
 
-          // if (students.any((element) => element.id == 2)) {
-          //   ScaffoldMessenger.of(context).showSnackBar(
-          //       const SnackBar(content: Text("Student already exists")));
-          //   return;
-          // }
-          // var st = Student(id: 2, names: "Another student");
-          // ref.read(studentsProvider.notifier).addStudent(st);
+          Navigator.of(context).push(page);
         },
         child: const Icon(Icons.add),
       ),

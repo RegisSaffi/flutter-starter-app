@@ -14,4 +14,8 @@ class Student {
         email: json['email'],
         totalMarks: 0);
   }
+
+  Map<String, dynamic> toJson() {
+    return {'name': names, 'email': email};
+  }
 }

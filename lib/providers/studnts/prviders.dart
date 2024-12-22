@@ -6,3 +6,4 @@ var studentsProvider =
     NotifierProvider<StudentsNotifier, List<Student>>(() => StudentsNotifier());
 
 var studentsStatusProvider = StateProvider<String?>((ref) => null);
+var newStudentProvider = StateProvider<String?>((ref) => null);

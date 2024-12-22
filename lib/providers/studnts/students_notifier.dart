@@ -11,10 +11,12 @@ class StudentsNotifier extends Notifier<List<Student>> {
     return [];
   }
 
+  var studentsEndpoint =
+      Uri.parse("https://jsonplaceholder.typicode.com/users");
+
   getStudentsFromServer() async {
-    var endpoint = Uri.parse("https://jsonplaceholder.typicode.com/users");
     ref.read(studentsStatusProvider.notifier).state = 'loading';
-    var res = await http.get(endpoint);
+    var res = await http.get(studentsEndpoint);
     if (res.statusCode == 200) {
       state = _decodeData(res.body);
       ref.read(studentsStatusProvider.notifier).state = null;
@@ -33,8 +35,22 @@ class StudentsNotifier extends Notifier<List<Student>> {
     return students2;
   }
 
-  void addStudent(Student student) {
-    state = [...state, student];
+  Future<int> addStudent(Student student) async {
+    try {
+      ref.read(newStudentProvider.notifier).state = "loading";
+      var res = await http.post(studentsEndpoint, body: student.toJson());
+      if (res.statusCode == 201) {
+        state = [...state, student];
+        ref.read(newStudentProvider.notifier).state = "null";
+        return res.statusCode;
+      } else {
+        ref.read(newStudentProvider.notifier).state = "error";
+        return 500;
+      }
+    } catch (e) {
+      ref.read(newStudentProvider.notifier).state = "error";
+      return 500;
+    }
   }
 
   void removeStudent(Student student) {
