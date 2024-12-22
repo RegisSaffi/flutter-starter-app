@@ -5,7 +5,25 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.redAccent, child: Center(child: Text("Home page")));
+    return Scaffold(
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 100,
+            childAspectRatio: 2.5,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10),
+        itemBuilder: (context, index) {
+          return Container(
+            color: index % 2 == 0 ? Colors.black : Colors.redAccent,
+            child: Center(
+              child: Text(
+                "${index}",
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

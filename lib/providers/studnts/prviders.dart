@@ -4,3 +4,5 @@ import 'package:starter/providers/studnts/students_notifier.dart';
 
 var studentsProvider =
     NotifierProvider<StudentsNotifier, List<Student>>(() => StudentsNotifier());
+
+var studentsStatusProvider = StateProvider<String?>((ref) => null);
